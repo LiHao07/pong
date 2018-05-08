@@ -12,7 +12,7 @@ import gym
 #hyper parameters
 EPOCH=3000
 HIDDEN_SIZE=200
-LR=0.001
+LR=0.00001
 GAMMA=0.99
 RENDER=False
 TRAIN_TYPE=2
