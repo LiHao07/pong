@@ -109,17 +109,20 @@ class PG(object):
 
     def learn(self,):
         tot=len(self.vt)
-        s=[]
-        s=torch.stack(self.s[0:tot-1],dim=0)
-        s=Variable(s)
-        p=self.net(s)
-        loss=0
-        for i in range(BATCH_SIZE):
-            loss+=-torch.log(p[i][self.a[i]])*self.vt[i]
-        loss/=BATCH_SIZE
-        self.opt.zero_grad()
-        loss.backward()
-        self.opt.step()
+        print(tot)
+        for j in range(tot//100):
+            st=j*100
+            s=torch.stack(self.s[st:st+99],dim=0)
+            s=Variable(s)
+            p=self.net(s)
+            batch_size=len(s)
+            loss=0
+            for i in range(batch_size):
+                loss+=-torch.log(p[i][self.a[st+i]])*self.vt[st+i]
+            loss/=batch_size
+            self.opt.zero_grad()
+            loss.backward()
+            self.opt.step()
         
     def discount_r(self,r):
         batch_size=len(r)
