@@ -125,7 +125,7 @@ pg.net.load_state_dict(torch.load('pg_net_parameters_Max.pkl'))
 #Max=-22
 epoch=0
 ep_r=2.6
-while(True):
+while(epoch<20):
     s=env.reset()
    # for i in range(20):
     #    s,r,done,info=env.step(0)
